@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./style.scss";
+import Img from "../../../components/lazyLoadImage/img";
+import ContentWrapper from "../../../components/contentWrapper/ContentWrapper";
 import useFetch from "../../../hooks/useFetch";
 import { useSelector } from "react-redux";
 
@@ -30,11 +32,14 @@ const HeroBanner =()=>{
 
     return(
        <div className="heroBanner">
-        <div className="backdrop-img">
-            
-        </div>
-
-         <div className="wrapper">
+       
+       { !loading && <div className="backdrop-img">
+            <Img src={background}/>
+        </div>}
+        <div className="opacity-layer"></div>
+        
+    <ContentWrapper>
+  
             <div className="heroBannerContent">
                 <span className="title">Welcome.</span>
                 <span className="subTitle">Milloins of movies, Tv shows and people to discover.</span>
@@ -48,7 +53,9 @@ const HeroBanner =()=>{
                         <button >Search</button>
                 </div>
             </div>
-         </div>
+        
+    </ContentWrapper>
+       
        </div>
     );
 };
