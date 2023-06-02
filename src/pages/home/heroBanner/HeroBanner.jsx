@@ -20,6 +20,7 @@ const HeroBanner =()=>{
         const bg = url.backdrop +
         data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path;
         setBackground(bg);
+       
     }, [data]);
 
 
@@ -39,7 +40,6 @@ const HeroBanner =()=>{
         <div className="opacity-layer"></div>
         
     <ContentWrapper>
-  
             <div className="heroBannerContent">
                 <span className="title">Welcome.</span>
                 <span className="subTitle">Milloins of movies, Tv shows and people to discover.</span>
