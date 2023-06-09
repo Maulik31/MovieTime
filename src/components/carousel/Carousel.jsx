@@ -15,7 +15,7 @@ import "./style.scss";
 import CircleRating from "../circleRating/CircleRating";
 import Genres from "../genres/Genres";
 
-const Carousel = ({data, loading}) => {
+const Carousel = ({data, loading, media}) => {
 
     const carouselContainer = useRef();
     const{url} = useSelector((state)=> state.home);
@@ -61,7 +61,7 @@ const Carousel = ({data, loading}) => {
                      
 
                     return(
-                        <div key={item.id} className="carouselItem" onClick={() => navigate(`/${item.media_type}/${item.id}`)}>
+                        <div key={item.id} className="carouselItem" onClick={() => navigate( `/${item.media_type || media}/${item.id}`)}>
                             <div className="posterBlock">
                                 <Img src={posterUrl} />
                                 <CircleRating rating={item.vote_average.toFixed()}/>
