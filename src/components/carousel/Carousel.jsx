@@ -6,7 +6,6 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import dayjs from "dayjs";
-
 import ContentWrapper from "../contentWrapper/ContentWrapper";
 import Img from "../lazyLoadImage/Img";
 import PosterFallback from "../../assets/no-poster.png";
@@ -15,7 +14,7 @@ import "./style.scss";
 import CircleRating from "../circleRating/CircleRating";
 import Genres from "../genres/Genres";
 
-const Carousel = ({data, loading, media}) => {
+const Carousel = ({data, loading, endpoint, title}) => {
 
     const carouselContainer = useRef();
     const{url} = useSelector((state)=> state.home);
@@ -46,6 +45,7 @@ const Carousel = ({data, loading, media}) => {
     return(
        <div className="carousel">
         <ContentWrapper>
+        {title && <div className="carouselTitle">{title}</div>}
         <BsFillArrowLeftCircleFill
                     className="carouselLeftNav arrow"
                     onClick={() => navigation("left")}
@@ -61,7 +61,7 @@ const Carousel = ({data, loading, media}) => {
                      
 
                     return(
-                        <div key={item.id} className="carouselItem" onClick={() => navigate( `/${item.media_type || media}/${item.id}`)}>
+                        <div key={item.id} className="carouselItem" onClick={() => navigate( `/${item.media_type || endpoint}/${item.id}`)}>
                             <div className="posterBlock">
                                 <Img src={posterUrl} />
                                 <CircleRating rating={item.vote_average.toFixed()}/>
